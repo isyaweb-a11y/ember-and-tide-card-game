@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember &amp; Tide — Duel of the Four Winds</title>
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+<div id="app">
+  <div id="topbar">
+    <button class="ghost-btn" id="sound-toggle">Sound: On</button>
+    <button class="ghost-btn" id="restart-btn">Restart</button>
+  </div>
+
+  <!-- TITLE -->
+  <div id="title-screen">
+    <h1>EMBER <span class="amp">&amp;</span> TIDE</h1>
+    <div class="subtitle">Duel of the Four Winds</div>
+    <div class="tagline">Four elements. One deck. Thirty life. No mercy.</div>
+    <div class="title-cards">
+      <div class="mini-card"><span class="glyph">&#9650;</span>EMBER</div>
+      <div class="mini-card"><span class="glyph">&#9679;</span>TIDE</div>
+      <div class="mini-card"><span class="glyph">&#9830;</span>GALE</div>
+      <div class="mini-card"><span class="glyph">&#9632;</span>STONE</div>
+    </div>
+    <div class="rules">
+      You face <b>The Warden</b> in a duel of cards. Each turn you draw a card and gain energy —
+      spend it to strike, shield or heal. <b>Ember beats Gale, Gale beats Stone, Stone beats Tide,
+      Tide beats Ember</b>: strike with the favoured element for +2 damage. First to 0 life loses.
+    </div>
+    <button class="gold-btn" id="start-btn">BEGIN THE DUEL</button>
+  </div>
+
+  <!-- TABLE -->
+  <div id="table" class="hidden">
+    <div class="row">
+      <div class="player-label">
+        <div class="name">THE WARDEN</div>
+        <div class="sub">KEEPER OF THE FOUR WINDS</div>
+        <div class="hp-wrap">
+          <div class="hp-bar"><div class="hp-fill" id="opp-hp-fill" style="width:100%"></div></div>
+          <span class="hp-num" id="opp-hp-num">30 / 30</span>
+          <span class="shield-num" id="opp-shield"></span>
+        </div>
+      </div>
+      <div id="opp-hand"></div>
+      <div class="ward">Ward element<br><b id="opp-ward">—</b></div>
+    </div>
+
+    <div id="middle">
+      <div id="arena">
+        <div class="played-slot" id="opp-played">Opponent's<br>last card</div>
+        <div class="vs">VS</div>
+        <div class="played-slot" id="my-played">Your<br>last card</div>
+      </div>
+      <div id="side-panel">
+        <div id="energy-box"><div class="lbl">ENERGY</div><div class="val" id="energy-val">3 / 3</div></div>
+        <div id="turn-box">Turn <b id="turn-num">1</b> &nbsp;·&nbsp; Deck <b id="deck-num">20</b></div>
+        <div id="log"></div>
+        <button class="gold-btn" id="end-turn" style="font-size:17px; padding:10px 26px;">END TURN</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="player-label">
+        <div class="name">YOU</div>
+        <div class="sub">DUELIST OF EMBER &amp; TIDE</div>
+        <div class="hp-wrap">
+          <div class="hp-bar"><div class="hp-fill you" id="my-hp-fill" style="width:100%"></div></div>
+          <span class="hp-num" id="my-hp-num">30 / 30</span>
+          <span class="shield-num" id="my-shield"></span>
+        </div>
+      </div>
+      <div id="my-hand"></div>
+      <div class="ward">Your ward<br><b id="my-ward">—</b></div>
+    </div>
+  </div>
+
+  <!-- WIN -->
+  <div id="win-screen" class="end-screen win hidden">
+    <h2>VICTORY</h2>
+    <div class="tag">The Warden bows. The four winds are yours.</div>
+    <div class="stats">
+      <div class="stat"><div class="n" id="win-turns">0</div><div class="l">TURNS</div></div>
+      <div class="stat"><div class="n" id="win-dmg">0</div><div class="l">DAMAGE DEALT</div></div>
+      <div class="stat"><div class="n" id="win-cards">0</div><div class="l">CARDS PLAYED</div></div>
+      <div class="stat"><div class="n" id="win-hp">0</div><div class="l">LIFE LEFT</div></div>
+    </div>
+    <button class="gold-btn" id="again-win">DUEL AGAIN</button>
+  </div>
+
+  <!-- LOSS -->
+  <div id="lose-screen" class="end-screen lose hidden">
+    <h2>DEFEAT</h2>
+    <div class="tag">The Warden stands. The winds keep their secrets — for now.</div>
+    <div class="stats">
+      <div class="stat"><div class="n" id="lose-turns">0</div><div class="l">TURNS</div></div>
+      <div class="stat"><div class="n" id="lose-dmg">0</div><div class="l">DAMAGE DEALT</div></div>
+      <div class="stat"><div class="n" id="lose-cards">0</div><div class="l">CARDS PLAYED</div></div>
+      <div class="stat"><div class="n" id="lose-hp">0</div><div class="l">WARDEN LIFE</div></div>
+    </div>
+    <button class="gold-btn" id="again-lose">TRY AGAIN</button>
+  </div>
+</div>
+<script src="src/cards.js"></script>
+<script src="src/audio.js"></script>
+<script src="src/game.js"></script>
+<script src="src/render.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>
